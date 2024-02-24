@@ -1,0 +1,55 @@
+<section class="container mt-10 mx-auto">
+  <div *ngIf="rankings.length" class="overflow-x-scroll">
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50"
+      >
+      <tr>
+        <th scope="col" class="px-6 py-3">ID</th>
+        <th scope="col" class="px-6 py-3">COMPETITION</th>
+        <th scope="col" class="px-6 py-3">MEMBER</th>
+        <th scope="col" class="px-6 py-3">RANK</th>
+        <th scope="col" class="px-6 py-3">SCORE</th>
+        <th scope="col" class="px-6 py-3">ACTIONS</th>
+      </tr>
+      </thead>
+      <tbody class="">
+      <tr
+        *ngFor="let ranking of rankings"
+        class="bg-white border-b"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+        >
+          {{ ranking.id }}
+        </th>
+        <td class="px-6 py-4">
+          {{ ranking.competition.code }}
+        </td>
+        <td class="px-6 py-4">
+          {{ ranking.member.name }} {{ ranking.member.familyName }}
+        </td>
+        <td class="px-6 py-4">
+          {{ ranking.rank }}
+        </td>
+        <td class="px-6 py-4">
+          {{ ranking.score }}
+        </td>
+        <td class="px-6 py-4">
+          <a
+            [routerLink]="[
+                'rankings',
+                ranking.id
+              ]"
+            class="text-blue-600 hover:text-blue-900"
+          >Update Ranking</a
+          >
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

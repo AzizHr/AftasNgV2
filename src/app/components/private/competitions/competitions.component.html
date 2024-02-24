@@ -1,0 +1,92 @@
+<section class="container mt-10 mx-auto">
+  <div *ngIf="competitions.length" class="overflow-x-scroll">
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50"
+      >
+      <tr>
+        <th scope="col" class="px-6 py-3">CODE</th>
+        <th scope="col" class="px-6 py-3">DATE</th>
+        <th scope="col" class="px-6 py-3">START TIME</th>
+        <th scope="col" class="px-6 py-3">END TIME</th>
+        <th scope="col" class="px-6 py-3">PARTICIPANTS</th>
+        <th scope="col" class="px-6 py-3">LOCATION</th>
+        <th scope="col" class="px-6 py-3">ACTIONS</th>
+      </tr>
+      </thead>
+      <tbody class="">
+      <tr
+        *ngFor="let competition of competitions"
+        class="bg-white border-b"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+        >
+          {{ competition.code }}
+        </th>
+        <td class="px-6 py-4">
+          {{ competition.date }}
+        </td>
+        <td class="px-6 py-4">
+          {{ competition.startTime }}
+        </td>
+        <td class="px-6 py-4">
+          {{ competition.endTime }}
+        </td>
+        <td class="px-6 py-4">
+          {{ competition.numberOfParticipants }}
+        </td>
+        <td class="px-6 py-4">
+          {{ competition.location }}
+        </td>
+        <td class="px-6 py-4">
+          <a
+            [routerLink]="[
+                'competitions',
+                competition.code
+              ]"
+            class="text-blue-600 hover:text-blue-900"
+          >Update Competition</a
+          >
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="mt-5 mx-auto w-fit">
+  <div class="flex items-center">
+    <!-- Previous Page Button -->
+    <button
+      class="bg-gray-500 text-white px-4 py-2 rounded-l"
+      [disabled]="isFirstPage()"
+      (click)="onPageChange({ page: currentPage - 1, rows: limit })"
+    >
+      Previous
+    </button>
+
+    <!-- Page Numbers -->
+    <div class="flex">
+      <button
+        *ngFor="let page of pages"
+        class="bg-gray-500 text-white px-4 py-2"
+        (click)="onPageChange({ page: page, rows: limit })"
+      >
+        {{ page + 1 }}
+      </button>
+    </div>
+
+    <!-- Next Page Button -->
+    <button
+      [disabled]="isLastPage()"
+      class="bg-gray-500 text-white px-4 py-2 rounded-r"
+      (click)="onPageChange({ page: currentPage + 1, rows: limit })"
+    >
+      Next
+    </button>
+  </div>
+</div>

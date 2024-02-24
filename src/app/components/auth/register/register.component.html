@@ -1,0 +1,139 @@
+<app-auth-layout>
+  <div
+    auth-content
+    class="z-20 w-full flex flex-col h-full space-y-8 py-4 px-8"
+  >
+    <div class="flex items-center justify-end gap-4 w-full">
+      <a
+        routerLink="/auth/login"
+        class="block text-md text-purple-600"
+      >
+        Already have an account , <span class="font-medium">Sign in</span> now !
+      </a>
+    </div>
+
+    <div class="flex flex-col items-center justify-center h-full space-y-8">
+      <form
+        class="space-y-10 w-1/2"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        id="form"
+      >
+        <div class="flex flex-col gap-3">
+          <div class="flex flex-col gap-4 md:flex-row">
+            <div class="space-y-2 w-full">
+              <label for="name" class="pl-1 font-medium"
+              >Name</label
+              >
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                formControlName="name"
+                class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+                placeholder="Name"
+              />
+
+<!--              <p-->
+<!--                *ngIf="first_name_Error"-->
+<!--                id="first_name_Error"-->
+<!--                class="mt-1 text-xs text-red-500"-->
+<!--              >-->
+<!--                {{ first_name_Error }}-->
+<!--              </p>-->
+            </div>
+            <div class="space-y-2 w-full">
+              <label for="family_name" class="pl-1 font-medium">Family Name</label>
+              <input
+                id="family_name"
+                name="family_name"
+                type="text"
+                autocomplete="family_name"
+                formControlName="family_name"
+                class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+                placeholder="Family name"
+              />
+
+<!--              <p-->
+<!--                *ngIf="last_name_Error"-->
+<!--                id="last_name_Error"-->
+<!--                class="mt-1 text-xs text-red-500"-->
+<!--              >-->
+<!--                {{ last_name_Error }}-->
+<!--              </p>-->
+            </div>
+          </div>
+          <div class="space-y-2">
+            <label for="username" class="pl-1 font-medium">Email</label>
+            <input
+              id="username"
+              name="username"
+              type="email"
+              formControlName="username"
+              autocomplete="email"
+              class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+              placeholder="Enter Your Email"
+            />
+<!--            <p-->
+<!--              *ngIf="email_Error"-->
+<!--              id="email_Error"-->
+<!--              class="mt-1 text-xs text-red-500"-->
+<!--            >-->
+<!--              {{ email_Error }}-->
+<!--            </p>-->
+          </div>
+          <div class="flex flex-col gap-4 lg:flex-row">
+            <div class="space-y-2 w-full">
+              <label for="password" class="pl-1 font-medium">Password</label>
+              <input
+                id="password"
+                name="password"
+                formControlName="password"
+                type="password"
+                autocomplete="current-password"
+                class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
+                placeholder="Password"
+              />
+<!--              <p-->
+<!--                *ngIf="password_Error"-->
+<!--                id="password_Error"-->
+<!--                class="mt-1 text-xs text-red-500"-->
+<!--              >-->
+<!--                {{ password_Error }}-->
+<!--              </p>-->
+            </div>
+            <div class="space-y-2 w-full">
+              <label for="identityDocument" class="pl-1 font-medium">Family Name</label>
+              <input
+                id="identityDocument"
+                name="identityDocument"
+                type="text"
+                autocomplete="family_name"
+                formControlName="family_name"
+                class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+                placeholder="Family name"
+              />
+
+              <!--              <p-->
+              <!--                *ngIf="last_name_Error"-->
+              <!--                id="last_name_Error"-->
+              <!--                class="mt-1 text-xs text-red-500"-->
+              <!--              >-->
+              <!--                {{ last_name_Error }}-->
+              <!--              </p>-->
+            </div>
+            </div>
+          </div>
+        <div>
+          <button
+            type="submit"
+            class="group relative flex w-full justify-center rounded-md bg-purple-700 px-3 py-2.5 text-md font-semibold text-white hover:text-purple-600 hover:bg-white hover:border hover:border-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+          >
+            Sign up
+          </button>
+        </div>
+    </form>
+    </div>
+  </div>
+</app-auth-layout>

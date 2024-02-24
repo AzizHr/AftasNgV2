@@ -1,0 +1,47 @@
+<section class="container mt-10 mx-auto">
+  <div *ngIf="fishList.length" class="overflow-x-scroll">
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50"
+      >
+      <tr>
+        <th scope="col" class="px-6 py-3">NAME</th>
+        <th scope="col" class="px-6 py-3">AVERAGE WEIGHT</th>
+        <th scope="col" class="px-6 py-3">LEVEL</th>
+        <th scope="col" class="px-6 py-3">ACTIONS</th>
+      </tr>
+      </thead>
+      <tbody class="">
+      <tr
+        *ngFor="let fish of fishList"
+        class="bg-white border-b"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+        >
+          {{ fish.name }}
+        </th>
+        <td class="px-6 py-4">
+          {{ fish.averageWeight }}
+        </td>
+        <td class="px-6 py-4">
+          {{ fish.level.description }}
+        </td>
+        <td class="px-6 py-4">
+          <a
+            [routerLink]="[
+                'fish-list',
+                fish.name
+              ]"
+            class="text-blue-600 hover:text-blue-900"
+          >Update Fish</a
+          >
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

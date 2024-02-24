@@ -1,0 +1,72 @@
+<app-auth-layout>
+  <div
+    auth-content
+    class="z-20 w-full flex flex-col h-screen space-y-8 py-4 px-8 md:w-[60%]"
+  >
+    <div class="flex flex-row items-center justify-end gap-4 w-full">
+      <a routerLink="/auth/register" class="block text-sm text-purple-600">
+        Create an account now !
+      </a>
+    </div>
+
+    <div class="flex flex-col items-center justify-center h-full space-y-8">
+      <div class="text-purple-600 font-medium text-lg">Login</div>
+      <form
+        class="space-y-10 w-1/2"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        id="loginForm"
+      >
+        <div class="flex flex-col gap-3">
+          <div class="space-y-2">
+            <label for="username" class="pl-1 font-medium">Email</label>
+            <input
+              id="username"
+              name="username"
+              type="email"
+              formControlName="email"
+              autocomplete="email"
+              class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+              placeholder="Enter Your Email"
+            />
+<!--            <p-->
+<!--              *ngIf="email_Error"-->
+<!--              id="email_Error"-->
+<!--              class="mt-1 text-xs text-red-500"-->
+<!--            >-->
+<!--              {{ email_Error }}-->
+<!--            </p>-->
+          </div>
+
+          <div class="space-y-2">
+            <label for="password" class="pl-1 font-medium">Password</label>
+            <input
+              id="password"
+              name="password"
+              formControlName="password"
+              type="password"
+              autocomplete="current-password"
+              class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+              placeholder="Password"
+            />
+<!--            <p-->
+<!--              *ngIf="password_Error"-->
+<!--              id="password_Error"-->
+<!--              class="mt-1 text-xs text-red-500"-->
+<!--            >-->
+<!--              {{ password_Error }}-->
+<!--            </p>-->
+          </div>
+        </div>
+
+        <div>
+          <button
+            class="group relative flex w-full justify-center rounded-md bg-purple-700 px-3 py-2.5 text-md font-semibold text-white hover:text-purple-600 hover:bg-white hover:border hover:border-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</app-auth-layout>

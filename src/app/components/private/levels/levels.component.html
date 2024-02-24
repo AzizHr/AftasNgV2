@@ -1,0 +1,51 @@
+<section class="container mt-10 mx-auto">
+  <div *ngIf="levels.length" class="overflow-x-scroll">
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50"
+      >
+      <tr>
+        <th scope="col" class="px-6 py-3">CODE</th>
+        <th scope="col" class="px-6 py-3">DESCRIPTION</th>
+        <th scope="col" class="px-6 py-3">POINTS</th>
+        <th scope="col" class="px-6 py-3">NUMBER OF FISH</th>
+        <th scope="col" class="px-6 py-3">ACTIONS</th>
+      </tr>
+      </thead>
+      <tbody class="">
+      <tr
+        *ngFor="let level of levels"
+        class="bg-white border-b"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+        >
+          {{ level.code }}
+        </th>
+        <td class="px-6 py-4">
+          {{ level.description }}
+        </td>
+        <td class="px-6 py-4">
+          {{ level.points }}
+        </td>
+        <td class="px-6 py-4">
+          {{ level.fish.length }}
+        </td>
+        <td class="px-6 py-4">
+          <a
+            [routerLink]="[
+                'levels',
+                level.code
+              ]"
+            class="text-blue-600 hover:text-blue-900"
+          >Update Level</a
+          >
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
