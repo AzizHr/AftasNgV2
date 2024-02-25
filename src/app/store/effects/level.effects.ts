@@ -5,6 +5,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as LevelActions from '../actions/level.actions';
 import {Router} from "@angular/router";
 import {LevelService} from "../../services/level/level.service";
+import Swal from "sweetalert2";
 
 @Injectable()
 export class LevelEffects {
@@ -29,10 +30,23 @@ export class LevelEffects {
         this.levelService.save(action.levelRequest).pipe(
           map((levelResponse) =>
             {
-              this.router.navigateByUrl('/my-articles');
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'New level created with success',
+                showConfirmButton: false,
+                timer: 1500
+              });
               return LevelActions.addLevelSuccess({ levelResponse })
             },
-            catchError((error) => of(LevelActions.addLevelFailure({ error: error.message })))
+            catchError((error) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.error.message
+              });
+              return of(LevelActions.addLevelFailure({ error: error.error.message }));
+            })
           )
         )
       )
@@ -45,14 +59,27 @@ export class LevelEffects {
         this.levelService.update(action.levelRequest, action.code).pipe(
           map((levelResponse) =>
             {
-              this.router.navigateByUrl('/my-articles');
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Level updated with success',
+                showConfirmButton: false,
+                timer: 1500
+              });
               return LevelActions.updateLevelSuccess({ levelResponse })
             },
-            catchError((error) => of(LevelActions.updateLevelFailure({ error: error.message })))
+            catchError((error) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.error.message
+              });
+              return of(LevelActions.updateLevelFailure({ error: error.error.message }));
+            }
           )
         )
       )
-    ));
+    )));
 
   deleteLevel$ = createEffect(() =>
     this.actions$.pipe(

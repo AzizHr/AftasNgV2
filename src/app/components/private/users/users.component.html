@@ -39,10 +39,16 @@
           {{ user.username }}
         </td>
         <td class="px-6 py-4">
-          {{ user.role }}
+          <select
+            [(ngModel)]="selectedRole"
+            (change)="changeUserRole(user.num)"
+            class=" w-[80%] relative block rounded-md border p-2.5 text-gray-900 ring-1 ring-outset placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
+            id="role">
+            <option *ngFor="let role of roles" [value]="role" [selected]="user.role === role">{{ role }}</option>
+          </select>
         </td>
         <td class="px-6 py-4">
-          {{ user.isActivated }}
+          <input type="checkbox" (change)="toggleUserAccount(user.num)" [checked]="user.activated" />
         </td>
         <td class="px-6 py-4">
           {{ user.identityNumber }}

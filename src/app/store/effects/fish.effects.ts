@@ -5,6 +5,8 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as FishActions from '../actions/fish.actions';
 import {Router} from "@angular/router";
 import {FishService} from "../../services/fish/fish.service";
+import Swal from "sweetalert2";
+import * as CompetitionActions from "../actions/competition.actions";
 
 @Injectable()
 export class FishEffects {
@@ -29,10 +31,23 @@ export class FishEffects {
         this.fishService.save(action.fishRequest).pipe(
           map((fishResponse) =>
             {
-              this.router.navigateByUrl('/my-articles');
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'New fish created with success',
+                showConfirmButton: false,
+                timer: 1500
+              });
               return FishActions.addFishSuccess({ fishResponse })
             },
-            catchError((error) => of(FishActions.addFishFailure({ error: error.message })))
+            catchError((error) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.error.message
+              });
+              return of(FishActions.addFishFailure({ error: error.error.message }));
+            })
           )
         )
       )

@@ -1,5 +1,5 @@
 <section class="w-3/5 flex flex-col m-auto h-full gap-4 px-6 mt-10">
-  <form [formGroup]="competitionForm" (submit)="onSubmit()" id="jsonForm">
+  <form [formGroup]="competitionForm" (submit)="onSubmit()">
     <div class="mt-4">
       <label
         for="code"
@@ -10,7 +10,6 @@
         id="code"
         required
         formControlName="code"
-        [(ngModel)]="competition.code"
         type="text"
         class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
       />

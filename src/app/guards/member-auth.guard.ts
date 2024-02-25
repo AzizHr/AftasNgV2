@@ -13,7 +13,7 @@ export class MemberAuthGuard implements CanActivate {
     if (this.roleCheckerService.isMember()) {
       return true;
     } else {
-      this.router.navigateByUrl('/competitions');
+      window.history.back();
       return false;
     }
   }

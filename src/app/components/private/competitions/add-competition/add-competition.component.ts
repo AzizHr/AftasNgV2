@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {select, Store} from "@ngrx/store";
+import {Store} from "@ngrx/store";
 import {AppState} from "../../../../state/app.state";
 import {Router} from "@angular/router";
 import {CompetitionRequest} from "../../../../models/request/competition-request.models";
 import * as CompetitionActions from '../../../../store/actions/competition.actions';
-import {errorSelector} from "../../../../store/selectors/competition.selectors";
 
 @Component({
   selector: 'app-add-competition',

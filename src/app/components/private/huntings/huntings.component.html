@@ -32,23 +32,24 @@
           {{ hunting.numberOfFish }}
         </td>
         <td class="px-6 py-4">
-          {{ hunting.competition.code }}
+          {{ hunting.competition ? hunting.competition.code : 'null' }}
         </td>
         <td class="px-6 py-4">
-          {{ hunting.member.name }} {{ hunting.member.familyName }}
+          {{ hunting.member ? hunting.member.name : 'null' }} {{ hunting.member ? hunting.member.familyName : 'null'}}
         </td>
         <td class="px-6 py-4">
-          {{ hunting.fish.name }}
+          {{ hunting.fish ? hunting.fish.name : 'null' }}
         </td>
-        <td class="px-6 py-4">
-          <a
-            [routerLink]="[
-                'huntings',
-                hunting.id
-              ]"
-            class="text-blue-600 hover:text-blue-900"
-          >Update Hunting</a
-          >
+        <td class="px-6 py-4 flex gap-4">
+          <i
+            [routerLink]="['/huntings/update', hunting.id]"
+            class="fa-regular fa-pen-to-square text-green-500 bg-green-200 rounded-sm p-2"
+            style="font-size: 20px; cursor: pointer"
+          ></i>
+          <i
+            class="fa-regular fa-trash-can text-red-500 bg-red-200 rounded-sm p-2"
+            style="font-size: 20px; cursor: pointer"
+          ></i>
         </td>
       </tr>
       </tbody>

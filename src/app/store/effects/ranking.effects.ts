@@ -5,6 +5,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as RankingActions from '../actions/ranking.actions';
 import {Router} from "@angular/router";
 import {RankingService} from "../../services/ranking/ranking.service";
+import Swal from "sweetalert2";
 
 @Injectable()
 export class RankingEffects {
@@ -41,10 +42,23 @@ export class RankingEffects {
         this.rankingService.save(action.rankingRequest).pipe(
           map((rankingResponse) =>
             {
-              this.router.navigateByUrl('/my-articles');
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'New ranking saved with success',
+                showConfirmButton: false,
+                timer: 1500
+              });
               return RankingActions.addRankingSuccess({ rankingResponse })
             },
-            catchError((error) => of(RankingActions.addRankingFailure({ error: error.message })))
+            catchError((error) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.error.message
+              });
+              return of(RankingActions.addRankingFailure({ error: error.error.message }));
+            })
           )
         )
       )
@@ -57,10 +71,23 @@ export class RankingEffects {
         this.rankingService.update(action.rankingRequest, action.id).pipe(
           map((rankingResponse) =>
             {
-              this.router.navigateByUrl('/my-articles');
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Ranking updated with success',
+                showConfirmButton: false,
+                timer: 1500
+              });
               return RankingActions.updateRankingSuccess({ rankingResponse })
             },
-            catchError((error) => of(RankingActions.updateRankingFailure({ error: error.message })))
+            catchError((error) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.error.message
+              });
+              return of(RankingActions.updateRankingFailure({ error: error.error.message }));
+            })
           )
         )
       )

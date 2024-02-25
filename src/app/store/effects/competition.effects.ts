@@ -69,29 +69,28 @@ export class CompetitionEffects {
       ofType(CompetitionActions.updateCompetition),
       mergeMap((action) =>
         this.competitionService.update(action.competitionRequest, action.code).pipe(
-          map((competitionResponse) =>
-            {
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Competition updated with success',
-                showConfirmButton: false,
-                timer: 1500
-              });
-              return CompetitionActions.updateCompetitionSuccess({ competitionResponse })
-            },
-            catchError((error) => {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: error.error.message
-              });
-              return of(CompetitionActions.updateCompetitionFailure({ error: error.error.message }))
-            })
-          )
+          map((competitionResponse) => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Competition updated with success',
+              showConfirmButton: false,
+              timer: 1500
+            });
+            return CompetitionActions.updateCompetitionSuccess({ competitionResponse });
+          }),
+          catchError((error) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: error.error.message
+            });
+            return of(CompetitionActions.updateCompetitionFailure({ error: error.error.message }));
+          })
         )
       )
-    ));
+    )
+  );
 
   deleteCompetition$ = createEffect(() =>
     this.actions$.pipe(

@@ -26,10 +26,13 @@ import {JuryAuthGuard} from "./guards/jury-auth.guard";
 import {MemberAuthGuard} from "./guards/member-auth.guard";
 import {NoAuthGuard} from "./guards/no-auth.guard";
 import {AuthGuard} from "./guards/auth.guard";
+import {UsersComponent} from "./components/private/users/users.component";
+import {HomeComponent} from "./components/home/home.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/manager/competitions", pathMatch: "full" },
-  { path: "competitions", component: PCompetitionsComponent },
+  { path: "", redirectTo: "/home", pathMatch: "full" },
+  { path: "home", component: HomeComponent },
+  { path: "competitions", component: PCompetitionsComponent, canActivate: [AuthGuard] },
   { path: "manager/competitions", component: CompetitionsComponent },
   { path: "manager/competitions/add", component: AddCompetitionComponent },
   { path: "manager/competitions/update/:id", component: UpdateCompetitionComponent },
@@ -45,9 +48,10 @@ const routes: Routes = [
   { path: "manager/huntings", component: HuntingsComponent },
   { path: "manager/huntings/add", component: AddHuntingComponent },
   { path: "manager/huntings/update/:id", component: UpdateHuntingComponent },
+  { path: "manager/users", component: UsersComponent },
   { path: "competitions/top-3/:id", component: Top3Component },
-  { path: "auth/login", component: LoginComponent },
-  { path: "auth/register", component: RegisterComponent }
+  { path: "auth/login", component: LoginComponent, canActivate: [NoAuthGuard] },
+  { path: "auth/register", component: RegisterComponent, canActivate: [NoAuthGuard] }
 ];
 
 @NgModule({

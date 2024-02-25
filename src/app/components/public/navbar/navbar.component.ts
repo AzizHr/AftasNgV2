@@ -24,4 +24,10 @@ export class NavbarComponent {
     this.user = jwtStorageService.getUser()
   }
 
+  logout(): void {
+    this.jwtStorageService.removeToken()
+    this.jwtStorageService.removeUser()
+    window.location.reload()
+  }
+
 }

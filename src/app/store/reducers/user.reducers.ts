@@ -2,7 +2,7 @@ import * as UserActions from '../actions/user.actions';
 import {createReducer, on} from "@ngrx/store";
 import {initialState} from "../../state/user.state";
 
-export const UserReducer = createReducer(
+export const userReducer = createReducer(
   initialState,
   // Load Users
   on(UserActions.loadUsers, (state) => ({ ...state, isLoading: true })),
@@ -10,13 +10,13 @@ export const UserReducer = createReducer(
   on(UserActions.loadUsersFailure, (state, action) => ({ ...state, error: action.error })),
 
   // Activate User Account
-  on(UserActions.activateUserAccount, (state) => ({ ...state, isLoading: true })),
-  on(UserActions.activateUserAccountSuccess, (state, action) => ({ ...state, isLoading: false, selectedUser: action.user })),
-  on(UserActions.activateUserAccountFailure, (state, action) => ({ ...state, error: action.error })),
+  on(UserActions.toggleUserAccount, (state) => ({ ...state, isLoading: true })),
+  on(UserActions.toggleUserAccountSuccess, (state, action) => ({ ...state, isLoading: false, selectedUser: action.userResponse })),
+  on(UserActions.toggleUserAccountFailure, (state, action) => ({ ...state, error: action.error })),
 
   // Change User Role
   on(UserActions.changeUserRole, (state) => ({ ...state, isLoading: true })),
-  on(UserActions.changeUserRoleSuccess, (state, action) => ({ ...state, isLoading: false, selectedLevel: action.user })),
+  on(UserActions.changeUserRoleSuccess, (state, action) => ({ ...state, isLoading: false, selectedLevel: action.userResponse })),
   on(UserActions.changeUserRoleFailure, (state, action) => ({ ...state, error: action.error })),
 
 );

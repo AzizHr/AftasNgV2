@@ -6,6 +6,7 @@ import {AppState} from "../../../state/app.state";
 import {Router} from "@angular/router";
 import {competitionsSelector, errorSelector, isLoadingSelector} from "../../../store/selectors/competition.selectors";
 import * as CompetitionActions from '../../../store/actions/competition.actions';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-competitions',
@@ -58,6 +59,26 @@ export class CompetitionsComponent {
     const pageSize = event.rows;
     this.currentPage = page;
     this.all(page, pageSize);
+  }
+
+  confirmDelete(name: string) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(name);
+      }
+    });
+  }
+
+  delete(code: string): void {
+    this.store.dispatch(CompetitionActions.deleteCompetition({ code: code }));
   }
 
 }

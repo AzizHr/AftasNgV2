@@ -1,1 +1,62 @@
-<p>add-fish works!</p>
+<section class="w-3/5 flex flex-col m-auto h-full gap-4 px-6 mt-10">
+  <form [formGroup]="fishForm" (submit)="onSubmit()" id="jsonForm">
+    <div class="mt-4">
+      <label
+        for="name"
+        class="block text-md text-gray-900 capitalize"
+      >Name</label
+      >
+      <input
+        id="name"
+        required
+        formControlName="name"
+        type="text"
+        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+      />
+      <p
+        *ngIf="isFieldValid('name', 'required')"
+        class="mt-1 text-xs text-red-500"
+      >
+        Name is required
+      </p>
+    </div>
+    <div class="mt-4">
+      <label
+        for="averageWeight"
+        class="block text-md text-gray-900 capitalize"
+      >Average Weight</label
+      >
+      <input
+        id="averageWeight"
+        required
+        formControlName="averageWeight"
+        type="number"
+        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+      />
+      <p
+        *ngIf="isFieldValid('averageWeight', 'required')"
+        class="mt-1 text-xs text-red-500"
+      >
+        averageWeight is required
+      </p>
+    </div>
+    <div class="space-y-2 w-full">
+      <label for="levelCode" class="pl-1 font-medium">Level Code</label>
+      <select
+        class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
+        id="levelCode" formControlName="levelCode">
+        <option *ngFor="let level of levels" [value]="level.code">{{ level.description }}</option>
+      </select>
+    </div>
+    <div class="flex justify-end my-6">
+      <button
+        [disabled]="fishForm.invalid"
+        type="submit"
+        class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</section>
+

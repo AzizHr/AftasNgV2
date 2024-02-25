@@ -13,7 +13,7 @@ export class JuryAuthGuard implements CanActivate {
     if (this.roleCheckerService.isJury()) {
       return true;
     } else {
-      this.router.navigateByUrl('/competitions');
+      window.history.back();
       return false;
     }
   }

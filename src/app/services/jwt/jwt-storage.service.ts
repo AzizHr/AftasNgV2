@@ -36,4 +36,12 @@ export class JwtStorageService {
     }
     return null;
   }
+
+  public removeToken() {
+    localStorage.removeItem(this.TOKEN_KEY);
+  }
+
+  public removeUser() {
+    localStorage.removeItem(this.USER_KEY);
+  }
 }

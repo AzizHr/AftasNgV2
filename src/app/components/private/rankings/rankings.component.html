@@ -29,10 +29,10 @@
           {{ ranking.id }}
         </th>
         <td class="px-6 py-4">
-          {{ ranking.competition.code }}
+          {{ ranking.competition ? ranking.competition.code : 'null' }}
         </td>
         <td class="px-6 py-4">
-          {{ ranking.member.name }} {{ ranking.member.familyName }}
+          {{ ranking.member ? ranking.member.name : 'null' }} {{ ranking.member ? ranking.member.familyName : 'null'}}
         </td>
         <td class="px-6 py-4">
           {{ ranking.rank }}
@@ -40,15 +40,16 @@
         <td class="px-6 py-4">
           {{ ranking.score }}
         </td>
-        <td class="px-6 py-4">
-          <a
-            [routerLink]="[
-                'rankings',
-                ranking.id
-              ]"
-            class="text-blue-600 hover:text-blue-900"
-          >Update Ranking</a
-          >
+        <td class="px-6 py-4 flex gap-4">
+          <i
+            [routerLink]="['/rankings/update', ranking.id]"
+            class="fa-regular fa-pen-to-square text-green-500 bg-green-200 rounded-sm p-2"
+            style="font-size: 20px; cursor: pointer"
+          ></i>
+          <i
+            class="fa-regular fa-trash-can text-red-500 bg-red-200 rounded-sm p-2"
+            style="font-size: 20px; cursor: pointer"
+          ></i>
         </td>
       </tr>
       </tbody>

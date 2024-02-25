@@ -36,15 +36,16 @@
         <td class="px-6 py-4">
           {{ level.fish.length }}
         </td>
-        <td class="px-6 py-4">
-          <a
-            [routerLink]="[
-                'levels',
-                level.code
-              ]"
-            class="text-blue-600 hover:text-blue-900"
-          >Update Level</a
-          >
+        <td class="px-6 py-4 flex gap-4">
+          <i
+            [routerLink]="['/levels/update', level.code]"
+            class="fa-regular fa-pen-to-square text-green-500 bg-green-200 rounded-sm p-2"
+            style="font-size: 20px; cursor: pointer"
+          ></i>
+          <i
+            class="fa-regular fa-trash-can text-red-500 bg-red-200 rounded-sm p-2"
+            style="font-size: 20px; cursor: pointer"
+          ></i>
         </td>
       </tr>
       </tbody>

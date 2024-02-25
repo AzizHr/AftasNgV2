@@ -5,6 +5,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as HuntingActions from '../actions/hunting.actions';
 import {Router} from "@angular/router";
 import {HuntingService} from "../../services/hunting/hunting.service";
+import Swal from "sweetalert2";
 
 @Injectable()
 export class HuntingEffects {
@@ -29,10 +30,23 @@ export class HuntingEffects {
         this.huntingService.save(action.huntingRequest).pipe(
           map((huntingResponse) =>
             {
-              this.router.navigateByUrl('/my-articles');
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'New hunting saved with success',
+                showConfirmButton: false,
+                timer: 1500
+              });
               return HuntingActions.addHuntingSuccess({ huntingResponse })
             },
-            catchError((error) => of(HuntingActions.addHuntingFailure({ error: error.message })))
+            catchError((error) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.error.message
+              });
+              return of(HuntingActions.addHuntingFailure({ error: error.error.message }));
+            })
           )
         )
       )

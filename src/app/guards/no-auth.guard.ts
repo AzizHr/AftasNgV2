@@ -13,7 +13,7 @@ export class NoAuthGuard implements CanActivate {
     if (this.roleCheckerService.isLoggedIn()) {
       return false;
     } else {
-      this.router.navigateByUrl('/competitions');
+      window.history.back();
       return true;
     }
   }

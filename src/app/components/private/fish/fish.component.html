@@ -30,17 +30,18 @@
           {{ fish.averageWeight }}
         </td>
         <td class="px-6 py-4">
-          {{ fish.level.description }}
+          {{ fish.level ? fish.level.description : 'null' }}
         </td>
-        <td class="px-6 py-4">
-          <a
-            [routerLink]="[
-                'fish-list',
-                fish.name
-              ]"
-            class="text-blue-600 hover:text-blue-900"
-          >Update Fish</a
-          >
+        <td class="px-6 py-4 flex gap-4">
+          <i
+            [routerLink]="['/fish-list/update', fish.name]"
+            class="fa-regular fa-pen-to-square text-green-500 bg-green-200 rounded-sm p-2"
+            style="font-size: 20px; cursor: pointer"
+          ></i>
+          <i
+            class="fa-regular fa-trash-can text-red-500 bg-red-200 rounded-sm p-2"
+            style="font-size: 20px; cursor: pointer"
+          ></i>
         </td>
       </tr>
       </tbody>

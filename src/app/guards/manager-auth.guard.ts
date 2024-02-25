@@ -13,7 +13,7 @@ export class ManagerAuthGuard implements CanActivate {
     if (this.roleCheckerService.isManager()) {
       return true;
     } else {
-      this.router.navigateByUrl('/competitions');
+      window.history.back();
       return false;
     }
   }

@@ -47,6 +47,10 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AuthLayoutComponent } from './components/auth/auth-layout/auth-layout.component';
 import { UsersComponent } from './components/private/users/users.component';
+import {usersSelector} from "./store/selectors/user.selectors";
+import {userReducer} from "./store/reducers/user.reducers";
+import {UserEffects} from "./store/effects/user.effects";
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +85,8 @@ import { UsersComponent } from './components/private/users/users.component';
     LoginComponent,
     RegisterComponent,
     AuthLayoutComponent,
-    UsersComponent
+    UsersComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -95,8 +100,8 @@ import { UsersComponent } from './components/private/users/users.component';
     StoreModule.forFeature('levels', levelReducer),
     StoreModule.forFeature('huntings', huntingReducer),
     StoreModule.forFeature('rankings', rankingReducer),
-    StoreModule.forFeature('users', rankingReducer),
-    EffectsModule.forFeature([CompetitionEffects, FishEffects, LevelEffects, HuntingEffects, RankingEffects]),
+    StoreModule.forFeature('users', userReducer),
+    EffectsModule.forFeature([CompetitionEffects, FishEffects, LevelEffects, HuntingEffects, RankingEffects, UserEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       // logOnly: environment.production, // Restrict extension to log-only mode

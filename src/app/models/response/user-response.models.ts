@@ -7,7 +7,7 @@ export interface UserResponse {
   familyName: string;
   username: string;
   role: Role;
-  isActivated: boolean;
+  activated: boolean;
   accessionDate: string;
   nationality: string;
   identityDocument: IdentityDocumentType;
