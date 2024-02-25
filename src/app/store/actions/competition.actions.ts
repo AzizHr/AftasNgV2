@@ -18,3 +18,7 @@ export const deleteCompetition = createAction("[Competition] Delete Competition"
 export const deleteCompetitionSuccess = createAction("[Competition] Delete Competition Success", props<{ code: string, message: string }>());
 export const deleteCompetitionFailure = createAction("[Competition] Delete Competition Failure", props<{ error: string }>());
 
+export const loadCompetition = createAction("[Competition] Load Competition", props<{ code: string }>());
+export const loadCompetitionSuccess = createAction("[Competition] Load Competition Success", props<{ competitionResponse: CompetitionResponse }>());
+export const loadCompetitionFailure = createAction("[Competition] Load Competition Failure", props<{ error: string }>());
+

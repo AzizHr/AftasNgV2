@@ -5,15 +5,15 @@ import {RoleCheckerService} from "../services/auth/role-checker/role-checker.ser
 @Injectable({
   providedIn: 'root'
 })
-export class ManagerAuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
 
   constructor(private roleCheckerService: RoleCheckerService, private router: Router) {}
 
   canActivate(): boolean {
-    if (this.roleCheckerService.isManager()) {
+    if (this.roleCheckerService.isLoggedIn()) {
       return true;
     } else {
-      this.router.navigateByUrl('/competitions');
+      this.router.navigateByUrl('/auth/login');
       return false;
     }
   }

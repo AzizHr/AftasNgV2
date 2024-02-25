@@ -1,1 +1,92 @@
-<p>p-competition-card works!</p>
+<div
+  class="rounded overflow-hidden shadow-lg flex flex-col"
+>
+  <a href="#"></a>
+  <div class="relative">
+    <a href="#">
+      <img
+        class="w-full"
+        src="https://www.worldanimalprotection.ca/sites/default/files/styles/600x400/public/media/sebastian-pena-lambarri-YV593oyMKmo-unsplash.jpg?h=efa2ac7b&itok=uKqIptmg"
+        alt="Sunset in the mountains"
+      />
+      <div
+        class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"
+      ></div>
+    </a>
+    <a href="#!">
+      <div
+        *ngIf="isRunning(competition)"
+        class="text-xs absolute top-0 right-0 bg-green-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-green-600 transition duration-500 ease-in-out"
+      >
+        Running
+      </div>
+      <div
+        *ngIf="isDone(competition)"
+        class="text-xs absolute top-0 right-0 bg-indigo-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out"
+      >
+        Done
+      </div>
+      <div
+        *ngIf="isUpcoming(competition)"
+        class="text-xs absolute top-0 right-0 bg-red-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-red-600 transition duration-500 ease-in-out"
+      >
+        Upcoming
+      </div>
+    </a>
+  </div>
+  <div class="px-6 py-4 mb-auto">
+    <a
+      href="#"
+      class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+    >In {{ competition.location }}</a
+    >
+    <p class="text-gray-500 text-sm">
+      This competition will start at {{ competition.startTime }} and ends at
+      {{ competition.endTime }}
+    </p>
+  </div>
+  <div
+    class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100"
+  >
+        <span
+          href="#"
+          class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center"
+        >
+          <span class="ml-1"
+          ><a
+            [routerLink]="['/competitions/podium', competition.code]"
+            *ngIf="isDone(competition)"
+            class="bg-yellow-500 p-2 rounded-md"
+            style="cursor: pointer"
+          >
+              Podium
+            </a></span
+          >
+        </span>
+
+    <span
+      href="#"
+      class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center"
+    >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-users"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+
+          <span class="ml-1">{{ competition.numberOfParticipants }}</span>
+        </span>
+  </div>
+</div>

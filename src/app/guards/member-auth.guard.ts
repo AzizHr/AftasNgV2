@@ -10,10 +10,10 @@ export class MemberAuthGuard implements CanActivate {
   constructor(private roleCheckerService: RoleCheckerService, private router: Router) {}
 
   canActivate(): boolean {
-    if (this.roleCheckerService.isLoggedIn() && this.roleCheckerService.isMember()) {
+    if (this.roleCheckerService.isMember()) {
       return true;
     } else {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/competitions');
       return false;
     }
   }

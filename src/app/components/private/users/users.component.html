@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<section class="container mt-10 mx-auto">
+  <div *ngIf="users && users.length" class="overflow-x-scroll">
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500 mt-2"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50"
+      >
+      <tr>
+        <th scope="col" class="px-6 py-3">NUM</th>
+        <th scope="col" class="px-6 py-3">NAME</th>
+        <th scope="col" class="px-6 py-3">FAMILY NAME</th>
+        <th scope="col" class="px-6 py-3">EMAIL</th>
+        <th scope="col" class="px-6 py-3">ROLE</th>
+        <th scope="col" class="px-6 py-3">ACTIVATED</th>
+        <th scope="col" class="px-6 py-3">IDENTITY NUMBER</th>
+        <th scope="col" class="px-6 py-3">NATIONALITY</th>
+      </tr>
+      </thead>
+      <tbody class="">
+      <tr
+        *ngFor="let user of users"
+        class="bg-white border-b"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+        >
+          {{ user.num }}
+        </th>
+        <td class="px-6 py-4">
+          {{ user.name }}
+        </td>
+        <td class="px-6 py-4">
+          {{ user.familyName }}
+        </td>
+        <td class="px-6 py-4">
+          {{ user.username }}
+        </td>
+        <td class="px-6 py-4">
+          {{ user.role }}
+        </td>
+        <td class="px-6 py-4">
+          {{ user.isActivated }}
+        </td>
+        <td class="px-6 py-4">
+          {{ user.identityNumber }}
+        </td>
+        <td class="px-6 py-4">
+          {{ user.nationality }}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

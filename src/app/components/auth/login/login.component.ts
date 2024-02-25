@@ -6,6 +6,8 @@ import {AuthManagementService} from "../../../services/auth/auth-management/auth
 import {RoleCheckerService} from "../../../services/auth/role-checker/role-checker.service";
 import {LoginRequest} from "../../../models/request/login-request.models";
 import {Router} from "@angular/router";
+import Swal from 'sweetalert2';
+import {Role} from "../../../enums/role.enums";
 
 @Component({
   selector: 'app-login',
@@ -18,11 +20,11 @@ export class LoginComponent {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  isSubmitted: boolean;
+  isSubmitted = false;
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]]
   });
 
   constructor(private formBuilder: FormBuilder,
@@ -55,19 +57,37 @@ export class LoginComponent {
         this.user = this.jwtStorageService.getUser();
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.router.navigateByUrl("/manager/competitions")
+        setTimeout(() => {
+          this.redirectBasedOnUserRole(this.user.role);
+        }, 1500);
       },
       err => {
         console.log(err.error.message);
         this.errorMessage = err.error.message;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: this.errorMessage
+        });
         this.isLoginFailed = true;
         this.router.navigateByUrl("/auth/login")
       }
     )
+    this.isSubmitted = true;
   }
 
-  reloadPage(): void {
-    window.location.reload();
+  redirectBasedOnUserRole(role: Role): void {
+    switch (role) {
+      case Role.MANAGER:
+        this.router.navigateByUrl("/manager/competitions");
+        break;
+      case Role.JURY:
+        this.router.navigateByUrl("/manager/competitions");
+        break;
+      case Role.MEMBER:
+        this.router.navigateByUrl("/competitions");
+        break;
+    }
   }
 
 }

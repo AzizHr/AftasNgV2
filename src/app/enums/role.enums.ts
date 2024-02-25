@@ -1,3 +1,3 @@
 export enum Role {
-  MANAGER, JURY, MEMBER
+  MANAGER="MANAGER", JURY="JURY", MEMBER="MEMBER"
 }

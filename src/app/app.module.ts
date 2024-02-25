@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
@@ -46,6 +46,7 @@ import {AuthInterceptorProvider} from "./interceptors/auth.interceptor";
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AuthLayoutComponent } from './components/auth/auth-layout/auth-layout.component';
+import { UsersComponent } from './components/private/users/users.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { AuthLayoutComponent } from './components/auth/auth-layout/auth-layout.c
     UpdateHuntingComponent,
     LoginComponent,
     RegisterComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +102,7 @@ import { AuthLayoutComponent } from './components/auth/auth-layout/auth-layout.c
       // logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true
     }),
+    FormsModule,
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

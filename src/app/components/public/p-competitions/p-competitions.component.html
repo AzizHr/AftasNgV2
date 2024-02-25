@@ -1,1 +1,54 @@
-<p>p-competitions works!</p>
+<app-navbar></app-navbar>
+<div class="w-full overflow-x-auto p-2">
+    <div class="md:w-1/4 sm:w-1/2 w-full grid gap-3 self-end">
+      <select
+        class="px-2 py-3 rounded-sm border border-gray-500 bg-white"
+        [(ngModel)]="selectedFilter"
+      >
+        <option value="All">All</option>
+        <option value="Running">Running</option>
+        <option value="Done">Done</option>
+        <option value="Upcoming">Upcoming</option>
+      </select>
+    </div>
+  <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+  <app-p-competition-card *ngFor="let competition of competitions" [competition]="competition"></app-p-competition-card>
+  </div>
+</div>
+
+<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+  <span *ngIf="competitions.length == 0"> No competitions found! </span>
+</div>
+
+<div class="mt-5 mx-auto w-fit">
+  <div class="flex items-center">
+    <!-- Previous Page Button -->
+    <button
+      class="bg-gray-500 text-white px-4 py-2 rounded-l"
+      [disabled]="isFirstPage()"
+      (click)="onPageChange({ page: currentPage - 1, rows: limit })"
+    >
+      Previous
+    </button>
+
+    <!-- Page Numbers -->
+    <div class="flex">
+      <button
+        *ngFor="let page of pages"
+        class="bg-gray-500 text-white px-4 py-2"
+        (click)="onPageChange({ page: page, rows: limit })"
+      >
+        {{ page + 1 }}
+      </button>
+    </div>
+
+    <!-- Next Page Button -->
+    <button
+      [disabled]="isLastPage()"
+      class="bg-gray-500 text-white px-4 py-2 rounded-r"
+      (click)="onPageChange({ page: currentPage + 1, rows: limit })"
+    >
+      Next
+    </button>
+  </div>
+</div>

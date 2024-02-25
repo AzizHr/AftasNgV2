@@ -1,1 +1,116 @@
-<p>add-competition works!</p>
+<section class="w-3/5 flex flex-col m-auto h-full gap-4 px-6 mt-10">
+  <form [formGroup]="competitionForm" (submit)="onSubmit()" id="jsonForm">
+    <div class="mt-4">
+      <label
+        for="code"
+        class="block text-md text-gray-900 capitalize"
+      >Code</label
+      >
+      <input
+        id="code"
+        required
+        formControlName="code"
+        type="text"
+        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+      />
+      <p
+        *ngIf="isFieldValid('code', 'required')"
+        class="mt-1 text-xs text-red-500"
+      >
+        Code is required
+      </p>
+    </div>
+    <div class="mt-4">
+      <label
+        for="location"
+        class="block text-md text-gray-900 capitalize"
+      >Location</label
+      >
+      <input
+        id="location"
+        required
+        formControlName="location"
+        type="text"
+        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+      />
+      <p
+        *ngIf="isFieldValid('location', 'required')"
+        class="mt-1 text-xs text-red-500"
+      >
+        Location is required
+      </p>
+    </div>
+    <div class="mt-4">
+      <label
+        for="date"
+        class="block text-md text-gray-900 capitalize"
+      >Date</label
+      >
+      <input
+        id="date"
+        formControlName="date"
+        placeholder=""
+        type="date"
+        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+      />
+      <p
+        *ngIf="isFieldValid('date', 'required')"
+        class="mt-1 text-xs text-red-500"
+      >
+        Date is required
+      </p>
+    </div>
+
+    <div class="mt-4">
+      <label
+        for="startTime"
+        class="block text-md text-gray-900 capitalize"
+      >Start Time</label
+      >
+      <input
+        id="startTime"
+        formControlName="startTime"
+        placeholder=""
+        type="time"
+        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+      />
+      <p
+        *ngIf="isFieldValid('startTime', 'required')"
+        class="mt-1 text-xs text-red-500"
+      >
+        StartTime is required
+      </p>
+    </div>
+
+    <div class="mt-4">
+      <label
+        for="endTime"
+        class="block text-md text-gray-900 capitalize"
+      >End Time</label
+      >
+      <input
+        id="endTime"
+        formControlName="endTime"
+        placeholder=""
+        type="time"
+        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+      />
+      <p
+        *ngIf="isFieldValid('endTime', 'required')"
+        class="mt-1 text-xs text-red-500"
+      >
+        EndTime is required
+      </p>
+    </div>
+
+    <div class="flex justify-end my-6">
+      <button
+        [disabled]="competitionForm.invalid"
+        type="submit"
+        class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+      >
+        Create
+      </button>
+    </div>
+  </form>
+</section>

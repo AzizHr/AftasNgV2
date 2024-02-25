@@ -5,6 +5,7 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as CompetitionActions from '../actions/competition.actions';
 import {Router} from "@angular/router";
 import {CompetitionService} from "../../services/competition/competition.service";
+import Swal from "sweetalert2";
 
 @Injectable()
 export class CompetitionEffects {
@@ -22,21 +23,46 @@ export class CompetitionEffects {
     )
   );
 
+  loadCompetition$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CompetitionActions.loadCompetition),
+      mergeMap((action) =>
+        this.competitionService.getCompetition(action.code).pipe(
+          map((competitionResponse) => CompetitionActions.loadCompetitionSuccess({ competitionResponse })),
+          catchError((error) => of(CompetitionActions.loadCompetitionFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
   addCompetition$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CompetitionActions.addCompetition),
       mergeMap((action) =>
         this.competitionService.save(action.competitionRequest).pipe(
-          map((competitionResponse) =>
-            {
-              this.router.navigateByUrl('/my-articles');
-              return CompetitionActions.addCompetitionSuccess({ competitionResponse })
-            },
-            catchError((error) => of(CompetitionActions.addCompetitionFailure({ error: error.message })))
-          )
+          map((competitionResponse) => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'New competition created with success',
+              showConfirmButton: false,
+              timer: 1500
+            });
+            console.log(competitionResponse);
+            return CompetitionActions.addCompetitionSuccess({ competitionResponse });
+          }),
+          catchError((error) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: error.error.message
+            });
+            return of(CompetitionActions.addCompetitionFailure({ error: error.error.message }));
+          })
         )
       )
-    ));
+    )
+  );
 
   updateCompetition$ = createEffect(() =>
     this.actions$.pipe(
@@ -45,10 +71,23 @@ export class CompetitionEffects {
         this.competitionService.update(action.competitionRequest, action.code).pipe(
           map((competitionResponse) =>
             {
-              this.router.navigateByUrl('/my-articles');
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Competition updated with success',
+                showConfirmButton: false,
+                timer: 1500
+              });
               return CompetitionActions.updateCompetitionSuccess({ competitionResponse })
             },
-            catchError((error) => of(CompetitionActions.updateCompetitionFailure({ error: error.message })))
+            catchError((error) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.error.message
+              });
+              return of(CompetitionActions.updateCompetitionFailure({ error: error.error.message }))
+            })
           )
         )
       )

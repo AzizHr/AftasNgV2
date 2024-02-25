@@ -34,34 +34,29 @@
                 class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
                 placeholder="Name"
               />
-
-<!--              <p-->
-<!--                *ngIf="first_name_Error"-->
-<!--                id="first_name_Error"-->
-<!--                class="mt-1 text-xs text-red-500"-->
-<!--              >-->
-<!--                {{ first_name_Error }}-->
-<!--              </p>-->
+              <p
+                *ngIf="isFieldValid('name', 'required')"
+                class="mt-1 text-xs text-red-500"
+              >
+                Name is required
+              </p>
             </div>
             <div class="space-y-2 w-full">
-              <label for="family_name" class="pl-1 font-medium">Family Name</label>
+              <label for="familyName" class="pl-1 font-medium">Family Name</label>
               <input
-                id="family_name"
-                name="family_name"
+                id="familyName"
+                name="familyName"
                 type="text"
-                autocomplete="family_name"
-                formControlName="family_name"
+                formControlName="familyName"
                 class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
                 placeholder="Family name"
               />
-
-<!--              <p-->
-<!--                *ngIf="last_name_Error"-->
-<!--                id="last_name_Error"-->
-<!--                class="mt-1 text-xs text-red-500"-->
-<!--              >-->
-<!--                {{ last_name_Error }}-->
-<!--              </p>-->
+              <p
+                *ngIf="isFieldValid('familyName', 'required')"
+                class="mt-1 text-xs text-red-500"
+              >
+                Family name is required
+              </p>
             </div>
           </div>
           <div class="space-y-2">
@@ -75,13 +70,18 @@
               class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
               placeholder="Enter Your Email"
             />
-<!--            <p-->
-<!--              *ngIf="email_Error"-->
-<!--              id="email_Error"-->
-<!--              class="mt-1 text-xs text-red-500"-->
-<!--            >-->
-<!--              {{ email_Error }}-->
-<!--            </p>-->
+            <p
+              *ngIf="isFieldValid('username', 'required')"
+              class="mt-1 text-xs text-red-500"
+            >
+              Email is required
+            </p>
+            <p
+              *ngIf="isFieldValid('username', 'email')"
+              class="mt-1 text-xs text-red-500"
+            >
+              Email is not valid
+            </p>
           </div>
           <div class="flex flex-col gap-4 lg:flex-row">
             <div class="space-y-2 w-full">
@@ -95,38 +95,55 @@
                 class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
                 placeholder="Password"
               />
-<!--              <p-->
-<!--                *ngIf="password_Error"-->
-<!--                id="password_Error"-->
-<!--                class="mt-1 text-xs text-red-500"-->
-<!--              >-->
-<!--                {{ password_Error }}-->
-<!--              </p>-->
+              <p
+                *ngIf="isFieldValid('password', 'required')"
+                class="mt-1 text-xs text-red-500"
+              >
+                Email is required
+              </p>
+              <p
+                *ngIf="isFieldValid('password', 'minlength')"
+                class="mt-1 text-xs text-red-500"
+              >
+                Password must be at least 6 characters long
+              </p>
+              <p
+                *ngIf="isFieldValid('password', 'maxlength')"
+                class="mt-1 text-xs text-red-500"
+              >
+                Password must be at most 15 characters long
+              </p>
             </div>
             <div class="space-y-2 w-full">
-              <label for="identityDocument" class="pl-1 font-medium">Family Name</label>
-              <input
-                id="identityDocument"
-                name="identityDocument"
-                type="text"
-                autocomplete="family_name"
-                formControlName="family_name"
-                class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
-                placeholder="Family name"
-              />
-
-              <!--              <p-->
-              <!--                *ngIf="last_name_Error"-->
-              <!--                id="last_name_Error"-->
-              <!--                class="mt-1 text-xs text-red-500"-->
-              <!--              >-->
-              <!--                {{ last_name_Error }}-->
-              <!--              </p>-->
+              <label for="identityDocument" class="pl-1 font-medium">Identity Document</label>
+              <select
+                class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
+                id="identityDocument" formControlName="identityDocument">
+                <option *ngFor="let identityDocument of identityDocuments" [value]="identityDocument">{{ identityDocument }}</option>
+              </select>
             </div>
             </div>
+          <div class="space-y-2">
+            <label for="identityNumber" class="pl-1 font-medium">Identity NUmber</label>
+            <input
+              id="identityNumber"
+              name="identityNumber"
+              type="text"
+              formControlName="identityNumber"
+              class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
+              placeholder="Enter Your Identity Number"
+            />
+            <p
+              *ngIf="isFieldValid('identityNumber', 'required')"
+              class="mt-1 text-xs text-red-500"
+            >
+              Identity Number is required
+            </p>
+          </div>
           </div>
         <div>
           <button
+            [disabled]="registerForm.invalid"
             type="submit"
             class="group relative flex w-full justify-center rounded-md bg-purple-700 px-3 py-2.5 text-md font-semibold text-white hover:text-purple-600 hover:bg-white hover:border hover:border-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
           >

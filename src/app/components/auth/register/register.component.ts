@@ -5,6 +5,10 @@ import {AuthManagementService} from "../../../services/auth/auth-management/auth
 import {JwtStorageService} from "../../../services/jwt/jwt-storage.service";
 import {IdentityDocumentType} from "../../../enums/identity-document-type.enums";
 import {RegisterRequest} from "../../../models/request/register-request.models";
+import Swal from "sweetalert2";
+import {Role} from "../../../enums/role.enums";
+import {RoleCheckerService} from "../../../services/auth/role-checker/role-checker.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -13,11 +17,11 @@ import {RegisterRequest} from "../../../models/request/register-request.models";
 })
 export class RegisterComponent {
 
-  user: UserResponse;
+  identityDocuments = Object.keys(IdentityDocumentType)
   isRegistered = false;
   isRegisterFailed = false;
   errorMessage = '';
-  isSubmitted: boolean;
+  isSubmitted = false;
 
   registerForm = this.formBuilder.group({
     name: ['', [Validators.required]],
@@ -30,7 +34,9 @@ export class RegisterComponent {
 
   constructor(private formBuilder: FormBuilder,
               private authManagementService: AuthManagementService,
-              private jwtStorageService: JwtStorageService) {}
+              private jwtStorageService: JwtStorageService,
+              private roleCheckerService: RoleCheckerService,
+              private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -50,23 +56,31 @@ export class RegisterComponent {
       identityNumber: this.registerForm.value.identityNumber
     }
 
-    this.authManagementService.authenticate(registerRequest).subscribe(
+    this.authManagementService.register(registerRequest).subscribe(
       (data) => {
-        this.jwtStorageService.saveToken(data.token);
-        this.jwtStorageService.saveUser(data.user);
-        this.user = this.jwtStorageService.getUser();
         this.isRegistered = true;
         this.isRegisterFailed = false;
-        this.reloadPage();
+        setTimeout(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your account created with success",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.router.navigateByUrl("/auth/login")
+        }, 1500);
       },
       err => {
         this.errorMessage = err.error.message;
         this.isRegisterFailed = true;
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: this.errorMessage,
+        });
       }
     )
-  }
-
-  reloadPage(): void {
-    window.location.reload();
+    this.isSubmitted = true;
   }
 }

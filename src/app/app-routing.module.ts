@@ -19,9 +19,17 @@ import {AddHuntingComponent} from "./components/private/huntings/add-hunting/add
 import {UpdateHuntingComponent} from "./components/private/huntings/update-hunting/update-hunting.component";
 import {LoginComponent} from "./components/auth/login/login.component";
 import {RegisterComponent} from "./components/auth/register/register.component";
+import {PCompetitionsComponent} from "./components/public/p-competitions/p-competitions.component";
+import {Top3Component} from "./components/public/p-competitions/top-3/top-3.component";
+import {ManagerAuthGuard} from "./guards/manager-auth.guard";
+import {JuryAuthGuard} from "./guards/jury-auth.guard";
+import {MemberAuthGuard} from "./guards/member-auth.guard";
+import {NoAuthGuard} from "./guards/no-auth.guard";
+import {AuthGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "/manager/competitions", pathMatch: "full" },
+  { path: "competitions", component: PCompetitionsComponent },
   { path: "manager/competitions", component: CompetitionsComponent },
   { path: "manager/competitions/add", component: AddCompetitionComponent },
   { path: "manager/competitions/update/:id", component: UpdateCompetitionComponent },
@@ -35,9 +43,10 @@ const routes: Routes = [
   { path: "manager/rankings/add", component: AddRankingComponent },
   { path: "manager/rankings/update/:id", component: UpdateRankingComponent },
   { path: "manager/huntings", component: HuntingsComponent },
-  { path: "manager/huntings/add", component: AddHuntingComponent},
+  { path: "manager/huntings/add", component: AddHuntingComponent },
   { path: "manager/huntings/update/:id", component: UpdateHuntingComponent },
-  { path: "auth/login", component: LoginComponent},
+  { path: "competitions/top-3/:id", component: Top3Component },
+  { path: "auth/login", component: LoginComponent },
   { path: "auth/register", component: RegisterComponent }
 ];
 
