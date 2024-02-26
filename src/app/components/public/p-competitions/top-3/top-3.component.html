@@ -1,1 +1,21 @@
-<p>top-3 works!</p>
+<app-navbar></app-navbar>
+<div class="mt-10">
+  <h1 class="text-center font-bold">Top 3 Members</h1>
+  <div class="flex gap-4 items-end justify-center pt-10">
+    <div class="grid gap-2 border border-1 rounded-md p-4 h-fit justify-items-center">
+      <img width="96" height="96" src="https://img.icons8.com/color/96/second-place-ribbon.png" alt="second-place-ribbon"/>
+      <span class="font-bold">{{ rankings[1].member.name }} {{ rankings[1].member.familyName }}</span>
+      <span>Score: {{ rankings[1].score }}</span>
+    </div>
+    <div class="grid gap-2 border border-1 rounded-md p-4 h-64 justify-items-center">
+      <img width="96" height="96" src="https://img.icons8.com/color/96/first-place-ribbon.png" alt="first-place-ribbon"/>
+      <span class="font-bold">{{ rankings[0].member.name }} {{ rankings[0].member.familyName }}</span>
+      <span>Score: {{ rankings[0].score }}</span>
+    </div>
+    <div class="grid gap-2 border border-1 rounded-md p-4 h-fit justify-items-center">
+      <img width="96" height="96" src="https://img.icons8.com/color/96/third-place-ribbon.png" alt="third-place-ribbon"/>
+      <span class="font-bold">{{ rankings[2].member.name }} {{ rankings[2].member.familyName }}</span>
+      <span>Score: {{ rankings[2].score }}</span>
+    </div>
+  </div>
+</div>

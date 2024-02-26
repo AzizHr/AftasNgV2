@@ -34,7 +34,7 @@ export class LoginComponent {
               private roleCheckerService: RoleCheckerService) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.roleCheckerService.isLoggedIn();
+    this.isLoggedIn = this.authManagementService.isLoggedIn();
   }
 
   isFieldValid(field: string, errorType: string): boolean {

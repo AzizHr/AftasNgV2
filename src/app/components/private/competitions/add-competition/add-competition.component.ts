@@ -17,7 +17,6 @@ export class AddCompetitionComponent {
   constructor(private formBuilder: FormBuilder, private store: Store<AppState>, private router: Router) {}
 
   competitionForm = this.formBuilder.group({
-    code: ['', [Validators.required]],
     date: ['', [Validators.required]],
     startTime: ['', Validators.required],
     endTime: ['', Validators.required],
@@ -26,7 +25,6 @@ export class AddCompetitionComponent {
 
   onSubmit() {
     const competitionRequest: CompetitionRequest = {
-      code: this.competitionForm.value.code,
       date: this.competitionForm.value.date,
       startTime: this.competitionForm.value.startTime,
       endTime: this.competitionForm.value.endTime,

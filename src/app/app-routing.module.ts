@@ -21,35 +21,36 @@ import {LoginComponent} from "./components/auth/login/login.component";
 import {RegisterComponent} from "./components/auth/register/register.component";
 import {PCompetitionsComponent} from "./components/public/p-competitions/p-competitions.component";
 import {Top3Component} from "./components/public/p-competitions/top-3/top-3.component";
-import {ManagerAuthGuard} from "./guards/manager-auth.guard";
+import {ManagerJuryAuthGuard} from "./guards/manager-jury-auth.guard";
 import {JuryAuthGuard} from "./guards/jury-auth.guard";
 import {MemberAuthGuard} from "./guards/member-auth.guard";
 import {NoAuthGuard} from "./guards/no-auth.guard";
 import {AuthGuard} from "./guards/auth.guard";
 import {UsersComponent} from "./components/private/users/users.component";
 import {HomeComponent} from "./components/home/home.component";
+import {ManagerAuthGuard} from "./guards/manager-auth.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "home", component: HomeComponent },
   { path: "competitions", component: PCompetitionsComponent, canActivate: [AuthGuard] },
-  { path: "manager/competitions", component: CompetitionsComponent },
-  { path: "manager/competitions/add", component: AddCompetitionComponent },
-  { path: "manager/competitions/update/:id", component: UpdateCompetitionComponent },
-  { path: "manager/fish-list", component: FishComponent },
-  { path: "manager/fish-list/add", component: AddFishComponent },
-  { path: "manager/fish-list/update/:id", component: UpdateFishComponent },
-  { path: "manager/levels", component: LevelsComponent },
-  { path: "manager/levels/add", component: AddLevelComponent },
-  { path: "manager/levels/update/:id", component: UpdateLevelComponent },
-  { path: "manager/rankings", component: RankingsComponent },
-  { path: "manager/rankings/add", component: AddRankingComponent },
-  { path: "manager/rankings/update/:id", component: UpdateRankingComponent },
-  { path: "manager/huntings", component: HuntingsComponent },
-  { path: "manager/huntings/add", component: AddHuntingComponent },
-  { path: "manager/huntings/update/:id", component: UpdateHuntingComponent },
-  { path: "manager/users", component: UsersComponent },
-  { path: "competitions/top-3/:id", component: Top3Component },
+  { path: "manager/competitions", component: CompetitionsComponent, canActivate: [ManagerJuryAuthGuard] },
+  { path: "manager/competitions/add", component: AddCompetitionComponent, canActivate: [ManagerJuryAuthGuard] },
+  { path: "manager/competitions/update/:id", component: UpdateCompetitionComponent, canActivate: [ManagerJuryAuthGuard] },
+  { path: "manager/fish-list", component: FishComponent, canActivate: [ManagerAuthGuard] },
+  { path: "manager/fish-list/add", component: AddFishComponent, canActivate: [ManagerAuthGuard] },
+  { path: "manager/fish-list/update/:id", component: UpdateFishComponent, canActivate: [ManagerAuthGuard] },
+  { path: "manager/levels", component: LevelsComponent, canActivate: [ManagerAuthGuard] },
+  { path: "manager/levels/add", component: AddLevelComponent, canActivate: [ManagerAuthGuard] },
+  { path: "manager/levels/update/:id", component: UpdateLevelComponent, canActivate: [ManagerAuthGuard] },
+  { path: "manager/rankings", component: RankingsComponent, canActivate: [ManagerJuryAuthGuard] },
+  { path: "manager/rankings/add", component: AddRankingComponent, canActivate: [ManagerJuryAuthGuard] },
+  { path: "manager/rankings/update/:id", component: UpdateRankingComponent, canActivate: [ManagerJuryAuthGuard] },
+  { path: "manager/huntings", component: HuntingsComponent, canActivate: [ManagerJuryAuthGuard] },
+  { path: "manager/huntings/add", component: AddHuntingComponent, canActivate: [ManagerJuryAuthGuard] },
+  { path: "manager/huntings/update/:id", component: UpdateHuntingComponent, canActivate: [ManagerJuryAuthGuard] },
+  { path: "manager/users", component: UsersComponent, canActivate: [ManagerAuthGuard] },
+  { path: "competitions/podium/:id", component: Top3Component, canActivate: [MemberAuthGuard] },
   { path: "auth/login", component: LoginComponent, canActivate: [NoAuthGuard] },
   { path: "auth/register", component: RegisterComponent, canActivate: [NoAuthGuard] }
 ];

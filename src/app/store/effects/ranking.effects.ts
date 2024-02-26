@@ -23,6 +23,18 @@ export class RankingEffects {
     )
   );
 
+  loadRankingsByCompetitionCode$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RankingActions.loadRankingsByCompetitionCode),
+      mergeMap((action) =>
+        this.rankingService.getAllByCompetitionCode(action.competitionCode).pipe(
+          map((rankings) => RankingActions.loadRankingsByCompetitionCodeSuccess({ rankings })),
+          catchError((error) => of(RankingActions.loadRankingsByCompetitionCodeFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
   loadTop3Rankings$ = createEffect(() =>
     this.actions$.pipe(
       ofType(RankingActions.loadTop3Rankings),

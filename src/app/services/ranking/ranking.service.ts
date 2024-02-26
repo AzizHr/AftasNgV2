@@ -33,6 +33,10 @@ export class RankingService {
     return this.http.get<RankingResponse[]>(this.api);
   }
 
+  public getAllByCompetitionCode(competitionCode: string): Observable<RankingResponse[]> {
+    return this.http.get<RankingResponse[]>(`${this.api}/by-competition/${competitionCode}`);
+  }
+
   public getTop3(competitionCode: string): Observable<RankingResponse[]> {
     return this.http.get<RankingResponse[]>(`${this.api}/podium/${competitionCode}`);
   }

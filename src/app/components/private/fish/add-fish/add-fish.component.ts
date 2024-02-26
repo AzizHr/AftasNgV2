@@ -8,6 +8,8 @@ import {FishRequest} from "../../../../models/request/fish-request.models";
 import {Observable} from "rxjs";
 import {LevelResponse} from "../../../../models/response/level-response.models";
 import {errorSelector, isLoadingSelector, levelsSelector} from "../../../../store/selectors/level.selectors";
+import {loadLevels} from "../../../../store/actions/level.actions";
+
 
 @Component({
   selector: 'app-add-fish',
@@ -28,6 +30,7 @@ export class AddFishComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.store.dispatch(loadLevels());
     this.levels$.subscribe((levels) => {
       this.levels = levels;
     })
@@ -35,8 +38,8 @@ export class AddFishComponent implements OnInit{
 
   fishForm = this.formBuilder.group({
     name: ['', [Validators.required]],
-    averageWeight: [ , [Validators.required]],
-    levelCode: [ , Validators.required],
+    averageWeight: [0, [Validators.required]],
+    levelCode: [null , Validators.required],
   });
 
 
@@ -47,6 +50,7 @@ export class AddFishComponent implements OnInit{
       levelCode: this.fishForm.value.levelCode
     }
 
+    console.log(this.fishForm.value)
     this.store.dispatch(FishActions.addFish({ fishRequest: fishRequest }));
 
     this.isSubmitted = true;

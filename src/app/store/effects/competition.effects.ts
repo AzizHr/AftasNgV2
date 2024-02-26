@@ -23,6 +23,18 @@ export class CompetitionEffects {
     )
   );
 
+  loadCompetitions_$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CompetitionActions.loadCompetitions_),
+      mergeMap((action) =>
+        this.competitionService.getAll_().pipe(
+          map((competitions) => CompetitionActions.loadCompetitions_Success({ competitions })),
+          catchError((error) => of(CompetitionActions.loadCompetitions_Failure({ error: error.message })))
+        )
+      )
+    )
+  );
+
   loadCompetition$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CompetitionActions.loadCompetition),

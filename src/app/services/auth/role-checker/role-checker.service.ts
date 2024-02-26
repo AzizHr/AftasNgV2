@@ -9,10 +9,6 @@ export class RoleCheckerService {
 
   constructor(private jwtStorageService: JwtStorageService) {}
 
-  isLoggedIn(): boolean {
-    return !!this.jwtStorageService.getToken();
-  }
-
   isManager(): boolean {
     const user = this.jwtStorageService.getUser();
     return user && user.role === Role.MANAGER;

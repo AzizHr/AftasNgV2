@@ -35,4 +35,8 @@ export class CompetitionService {
     return this.http.get<any>(this.api, { params });
   }
 
+  public getAll_(): Observable<any> {
+    return this.http.get<any>(this.api);
+  }
+
 }

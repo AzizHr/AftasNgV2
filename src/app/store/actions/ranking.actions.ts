@@ -6,6 +6,10 @@ export const loadRankings = createAction("[Ranking] Load Rankings");
 export const loadRankingsSuccess = createAction("[Ranking] Load Rankings Success", props<{ rankings: RankingResponse[] }>());
 export const loadRankingsFailure = createAction("[Ranking] Load Rankings Failure", props<{ error: string }>());
 
+export const loadRankingsByCompetitionCode = createAction("[Ranking] Load Rankings By Competition Code", props<{ competitionCode: string }>());
+export const loadRankingsByCompetitionCodeSuccess = createAction("[Ranking] Load Rankings By Competition Code Success", props<{ rankings: RankingResponse[] }>());
+export const loadRankingsByCompetitionCodeFailure = createAction("[Ranking] Load Rankings By Competition Code Failure", props<{ error: string }>());
+
 export const loadTop3Rankings = createAction("[Ranking] Load Top 3 Rankings", props<{ competitionCode: string }>());
 export const loadTop3RankingsSuccess = createAction("[Ranking] Load Top 3 Rankings Success", props<{ rankings: RankingResponse[] }>());
 export const loadTop3RankingsFailure = createAction("[Ranking] Load Top 3 Rankings Failure", props<{ error: string }>());

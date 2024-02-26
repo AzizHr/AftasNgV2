@@ -1,1 +1,82 @@
-<p>add-hunting works!</p>
+<app-navbar></app-navbar>
+<section class="w-3/5 flex flex-col m-auto h-full gap-4 px-6 mt-10">
+  <form [formGroup]="huntingForm" (submit)="onSubmit()" id="jsonForm">
+    <div class="mt-4">
+      <label
+        for="numberOfFish"
+        class="block text-md text-gray-900 capitalize"
+      >Number of Fish</label
+      >
+      <input
+        id="numberOfFish"
+        required
+        formControlName="numberOfFish"
+        type="text"
+        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+      />
+      <p
+        *ngIf="isFieldValid('numberOfFish', 'required')"
+        class="mt-1 text-xs text-red-500"
+      >
+        Number Of Fish is required
+      </p>
+    </div>
+    <div class="space-y-2 w-full mt-2">
+      <label for="competitionCode" class="pl-1 font-medium">Competition</label>
+      <select
+        (change)="onChange($any($event.target).value)"
+        class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
+        id="competitionCode" formControlName="competitionCode">
+        <option
+          *ngFor="let competition of competitions" [value]="competition.code">{{ competition.code }}
+        </option>
+      </select>
+    </div>
+<!--    <p-->
+<!--      *ngIf="isFieldValid('competitionCode', 'required')"-->
+<!--      class="mt-1 text-xs text-red-500"-->
+<!--    >-->
+<!--      Competition code is required-->
+<!--    </p>-->
+    <div class="space-y-2 w-full mt-2">
+      <label for="memberNum" class="pl-1 font-medium">Member</label>
+      <select
+        class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
+        id="memberNum" formControlName="memberNum">
+        <option
+          *ngFor="let ranking of rankings" [value]="ranking.member.num">{{ ranking.member.name }} {{ ranking.member.familyName }}</option>
+      </select>
+    </div>
+<!--    <p-->
+<!--      *ngIf="isFieldValid('memberNum', 'required')"-->
+<!--      class="mt-1 text-xs text-red-500"-->
+<!--    >-->
+<!--      Member num code is required-->
+<!--    </p>-->
+    <div class="space-y-2 w-full mt-2">
+      <label for="fishName" class="pl-1 font-medium">Fish</label>
+      <select
+        class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
+        id="fishName" formControlName="fishName">
+        <option *ngFor="let fish of fishList" [value]="fish.name">{{ fish.name }}</option>
+      </select>
+    </div>
+<!--    <p-->
+<!--      *ngIf="isFieldValid('fishName', 'required')"-->
+<!--      class="mt-1 text-xs text-red-500"-->
+<!--    >-->
+<!--      Fish name code is required-->
+<!--    </p>-->
+    <div class="flex justify-end my-6">
+      <button
+        [disabled]="huntingForm.invalid"
+        type="submit"
+        class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</section>
+
+

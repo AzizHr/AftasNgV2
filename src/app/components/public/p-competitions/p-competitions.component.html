@@ -1,16 +1,16 @@
 <app-navbar></app-navbar>
 <div class="w-full overflow-x-auto p-2">
-    <div class="md:w-1/4 sm:w-1/2 w-full grid gap-3 self-end">
-      <select
-        class="px-2 py-3 rounded-sm border border-gray-500 bg-white"
-        [(ngModel)]="selectedFilter"
-      >
-        <option value="All">All</option>
-        <option value="Running">Running</option>
-        <option value="Done">Done</option>
-        <option value="Upcoming">Upcoming</option>
-      </select>
-    </div>
+<!--    <div class="md:w-1/4 sm:w-1/2 w-full grid gap-3 self-end">-->
+<!--      <select-->
+<!--        class="px-2 py-3 rounded-sm border border-gray-500 bg-white"-->
+<!--        [(ngModel)]="selectedFilter"-->
+<!--      >-->
+<!--        <option value="All">All</option>-->
+<!--        <option value="Running">Running</option>-->
+<!--        <option value="Done">Done</option>-->
+<!--        <option value="Upcoming">Upcoming</option>-->
+<!--      </select>-->
+<!--    </div>-->
   <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
   <app-p-competition-card *ngFor="let competition of competitions" [competition]="competition"></app-p-competition-card>
   </div>

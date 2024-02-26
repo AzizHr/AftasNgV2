@@ -9,6 +9,11 @@ export const rankingReducer = createReducer(
   on(RankingActions.loadRankingsSuccess, (state, action) => ({ ...state, isLoading: false, rankings: action.rankings })),
   on(RankingActions.loadRankingsFailure, (state, action) => ({ ...state, error: action.error })),
 
+  // Load Rankings By Competition Code
+  on(RankingActions.loadRankingsByCompetitionCode, (state) => ({ ...state, isLoading: true })),
+  on(RankingActions.loadRankingsByCompetitionCodeSuccess, (state, action) => ({ ...state, isLoading: false, rankings: action.rankings })),
+  on(RankingActions.loadRankingsByCompetitionCodeFailure, (state, action) => ({ ...state, error: action.error })),
+
   // Load Top 3 Rankings
   on(RankingActions.loadTop3Rankings, (state) => ({ ...state, isLoading: true })),
   on(RankingActions.loadTop3RankingsSuccess, (state, action) => ({ ...state, isLoading: false, rankings: action.rankings })),

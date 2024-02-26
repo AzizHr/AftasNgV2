@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<section class="container mt-10 mx-auto">
+<section class="container mt-10 mx-16">
   <div *ngIf="users && users.length" class="overflow-x-scroll">
     <table
       class="w-full text-sm text-left rtl:text-right text-gray-500 mt-2"
@@ -8,14 +8,11 @@
         class="text-xs text-gray-700 uppercase bg-gray-50"
       >
       <tr>
-        <th scope="col" class="px-6 py-3">NUM</th>
         <th scope="col" class="px-6 py-3">NAME</th>
         <th scope="col" class="px-6 py-3">FAMILY NAME</th>
         <th scope="col" class="px-6 py-3">EMAIL</th>
         <th scope="col" class="px-6 py-3">ROLE</th>
         <th scope="col" class="px-6 py-3">ACTIVATED</th>
-        <th scope="col" class="px-6 py-3">IDENTITY NUMBER</th>
-        <th scope="col" class="px-6 py-3">NATIONALITY</th>
       </tr>
       </thead>
       <tbody class="">
@@ -23,12 +20,6 @@
         *ngFor="let user of users"
         class="bg-white border-b"
       >
-        <th
-          scope="row"
-          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-        >
-          {{ user.num }}
-        </th>
         <td class="px-6 py-4">
           {{ user.name }}
         </td>
@@ -42,19 +33,13 @@
           <select
             [(ngModel)]="selectedRole"
             (change)="changeUserRole(user.num)"
-            class=" w-[80%] relative block rounded-md border p-2.5 text-gray-900 ring-1 ring-outset placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
+            class=" w-[60%] relative block rounded-md border p-2.5 text-gray-900 ring-1 ring-outset placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
             id="role">
             <option *ngFor="let role of roles" [value]="role" [selected]="user.role === role">{{ role }}</option>
           </select>
         </td>
         <td class="px-6 py-4">
           <input type="checkbox" (change)="toggleUserAccount(user.num)" [checked]="user.activated" />
-        </td>
-        <td class="px-6 py-4">
-          {{ user.identityNumber }}
-        </td>
-        <td class="px-6 py-4">
-          {{ user.nationality }}
         </td>
       </tr>
       </tbody>

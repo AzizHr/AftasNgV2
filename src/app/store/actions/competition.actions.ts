@@ -6,6 +6,10 @@ export const loadCompetitions = createAction("[Competition] Load Competitions", 
 export const loadCompetitionsSuccess = createAction("[Competition] Load Competitions Success", props<{ competitions: CompetitionResponse[] }>());
 export const loadCompetitionsFailure = createAction("[Competition] Load Competitions Failure", props<{ error: string }>());
 
+export const loadCompetitions_ = createAction("[Competition] Load Competitions_");
+export const loadCompetitions_Success = createAction("[Competition] Load Competitions_ Success", props<{ competitions: CompetitionResponse[] }>());
+export const loadCompetitions_Failure = createAction("[Competition] Load Competitions_ Failure", props<{ error: string }>());
+
 export const addCompetition = createAction("[Competition] Add Competition", props<{ competitionRequest: CompetitionRequest }>());
 export const addCompetitionSuccess = createAction("[Competition] Add Competition Success", props<{ competitionResponse: CompetitionResponse }>());
 export const addCompetitionFailure = createAction("[Competition] Add Competition Failure", props<{ error: string }>());

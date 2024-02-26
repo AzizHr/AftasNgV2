@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <section class="w-3/5 flex flex-col m-auto h-full gap-4 px-6 mt-10">
   <form [formGroup]="fishForm" (submit)="onSubmit()" id="jsonForm">
     <div class="mt-4">
@@ -43,9 +44,9 @@
     <div class="space-y-2 w-full">
       <label for="levelCode" class="pl-1 font-medium">Level Code</label>
       <select
-        class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset ring-purple-600 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
+        class="relative block w-full rounded-md border p-2.5 text-gray-900 ring-1 ring-outset placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-orange-600 foucus:border-purple-400 sm:text-sm sm:leading-6"
         id="levelCode" formControlName="levelCode">
-        <option *ngFor="let level of levels" [value]="level.code">{{ level.description }}</option>
+        <option *ngFor="let level of levels" [value]="level.code" [selected]="level.code == 1">{{ level.description }}</option>
       </select>
     </div>
     <div class="flex justify-end my-6">

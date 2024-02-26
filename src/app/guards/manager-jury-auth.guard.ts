@@ -5,12 +5,12 @@ import {RoleCheckerService} from "../services/auth/role-checker/role-checker.ser
 @Injectable({
   providedIn: 'root'
 })
-export class ManagerAuthGuard implements CanActivate {
+export class ManagerJuryAuthGuard implements CanActivate {
 
   constructor(private roleCheckerService: RoleCheckerService) {}
 
   canActivate(): boolean {
-    if (this.roleCheckerService.isManager()) {
+    if (this.roleCheckerService.isManager() || this.roleCheckerService.isJury()) {
       return true;
     } else {
       window.history.back();

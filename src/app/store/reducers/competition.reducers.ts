@@ -11,6 +11,12 @@ export const competitionReducer = createReducer(
   on(CompetitionActions.loadCompetitionsSuccess, (state, action) => ({ ...state, isLoading: false, competitions: action.competitions })),
   on(CompetitionActions.loadCompetitionsFailure, (state, action) => ({ ...state, error: action.error })),
 
+
+  // Load Competitions_
+  on(CompetitionActions.loadCompetitions_, (state) => ({ ...state, isLoading: true })),
+  on(CompetitionActions.loadCompetitions_Success, (state, action) => ({ ...state, isLoading: false, competitions: action.competitions })),
+  on(CompetitionActions.loadCompetitions_Failure, (state, action) => ({ ...state, error: action.error })),
+
   // Load Competition
   on(CompetitionActions.loadCompetition, (state) => ({ ...state, isLoading: true })),
   on(CompetitionActions.loadCompetitionSuccess, (state, action) => ({

@@ -1,25 +1,6 @@
+<app-navbar></app-navbar>
 <section class="w-3/5 flex flex-col m-auto h-full gap-4 px-6 mt-10">
   <form [formGroup]="competitionForm" (submit)="onSubmit()" id="jsonForm">
-    <div class="mt-4">
-      <label
-        for="code"
-        class="block text-md text-gray-900 capitalize"
-      >Code</label
-      >
-      <input
-        id="code"
-        required
-        formControlName="code"
-        type="text"
-        class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
-      />
-      <p
-        *ngIf="isFieldValid('code', 'required')"
-        class="mt-1 text-xs text-red-500"
-      >
-        Code is required
-      </p>
-    </div>
     <div class="mt-4">
       <label
         for="location"
